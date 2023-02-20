@@ -1,7 +1,5 @@
 # Reproducable Analysis of W- Drosophila Larvae Crawling in Response to Temperature Stress
 
-### Y3879039
-
 ## Goal of the code:
 
   Analyse messy data produced from the ImageJ wrmtracker plugin that was processed in excel, reproducibility in R.
