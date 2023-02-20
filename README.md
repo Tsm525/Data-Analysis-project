@@ -1,7 +1,6 @@
-# Data-Analysis-project
-Year 3 Masters level data analysis project designed to deal with multiple fly crosses of varying genotypes, formatting, analyzing, and displaying data 
-
 # Reproducable Analysis of W- Drosophila Larvae Crawling in Response to Temperature Stress
+
+### Y3879039
 
 ## Goal of the code:
 
@@ -119,3 +118,8 @@ To create a new object of this class you need to use the $set() method as below:
       - object_2 is the other object to compare with, used to run 3 shaprio_then_stats() tests with.
     - Returns a list of 3 stats test, one per variable (distance,max_speed and avg_speed)
     
+    
+
+
+
+

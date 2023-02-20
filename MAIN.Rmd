@@ -1,0 +1,153 @@
+---
+title: "Preliminary Drosophila Larvae Crawling Assay On W- Genotype Control Groups In Response To Acute Temperature Shifts"
+author: "Y3879039"
+output:
+  bookdown::html_document2: default
+  bookdown::word_document2: default
+  bookdown::pdf_document: default
+bibliography: ["references.bib", "packages.bib"]
+
+---
+
+```{r setup, include=FALSE}
+# Setting defaults for the code chunks to come
+knitr::opts_chunk$set(echo = FALSE,
+                      warning = FALSE,
+                      message = FALSE,
+                      fig.retina = 3)
+```
+
+```{r packages}
+source("R/00-pkg.R")
+
+```
+
+# Methods
+### Data Gathering {-#methods}
+
+###  Data Files {-#methods}
+
+
+### Data Processing {-#methods}
+
+```{r functions}
+# Reads and cleans data into a neat data frame perfect for this specific analysis
+# Ensures independence of observations by compressing all from one individual into one value
+# Could be a method for the TemperatureCombo Class which would be called in the constructor instead of having the data frame as a parameter
+source("R/functions/Bespoke_xlsx_reader.R")
+```
+```{r classes}
+# Class that makes data analysis and storage easier (in my opinion) 
+source("R/classes/TemperatureCombo_Class.R")
+```
+```{r import}
+# Compile and process data
+source("R/01-import.R") 
+# Don't need to extract values for inline as the TemperatureCombo objects have summary data as attributes
+```
+
+
+# Results 
+```{r analysis, include=FALSE}
+# Run stat tests comparing the effects of measuring at an increased, lowered, or same temperature and then comparing the effect of reared temperature
+# Results saved as lists that can be called in line for value
+source("R/02-analysis.R")
+```
+## Tests Used {-#results}
+  Welch two sample T tests and Wilcoxon signed rank tests were carried out via base R [@R-base] operations as part of a method in TemperatureCombo class. The shapiro_then_stats() method applied a Shapiro-Wilk test for normality then selected either a parametric or non-parametric depending on normality. 
+
+  All 3 variables were compared in the following comparison groups:
+  
+* A: RT&deg;C at RT&deg;C x 29&deg;C at 29&deg;C
+* B: RT&deg;C at RT&deg;C x RT&deg;C at 29&deg;C
+* C: 29&deg;C at 29&deg;C x 29&deg;C at RT&deg;C
+
+
+## Test Results
+```{r plots,include=FALSE}
+# Load the values for referencing later
+source("R/03-plots.R")
+
+
+```
+  The results are broadly in-line with our hypothesis, only two tests came back with significant differences, both for distance. There was a significant difference for distance in groups A and C. Distance was the only variable with normal distribution in all groups, therefore, the Welch two sample T test was only used for distance and the Wilcoxon signed rank for the other variables.
+
+### Group A
+
+   
+  <!-- Could really make a function to automate legends like with ggplot titles and labs -->
+  
+
+```{r fig-RTRT-2929W, fig.cap='(ref:fig-RTRT-2929W)'}
+#grid.draw() outputs the grid as a Figure instead of a matrix
+grid.draw(fig_RTRT_2929W)
+```
+
+```{r fig-RTRT-2929PGRPLE, fig.cap='(ref:fig-RTRT-2929PGRPLE)'}
+grid.draw(fig_RTRT_2929PGRPLE)
+```
+
+
+### Group B
+
+ 
+
+```{r fig-RTRT-RT29W, fig.cap='(ref:fig-RTRT-RT29W)'}
+grid.draw(fig_RTRT_RT29W)
+```
+```{r fig-RTRT-RT29PGRPLE, fig.cap='(ref:fig-RTRT-RT29PGRPLE)'}
+grid.draw(fig_RTRT_RT29PGRPLE)
+```
+### Group C
+ 
+```{r fig-2929-29RTW, fig.cap='(ref:fig-2929-29RTW)'}
+grid.draw(fig_2929_29RTW)
+```
+
+```{r fig-2929-29RTPGRPLE, fig.cap='(ref:fig-2929-29RTPGRPLE)'}
+grid.draw(fig_2929_29RTPGRPLE)
+```
+
+```{r fig-RTRT-cross}
+grid.draw(all_RTRT_cross)
+```
+```{r fig-RT29-cross}
+grid.draw(all_RT29_cross)
+```
+```{r fig-2929-cross}
+grid.draw(all_2929_cross)
+```
+```{r fig-29RT-cross}
+grid.draw(all_29RT_cross)
+```
+
+
+
+
+## Word count {.unnumbered #word-count}
+
+Word count calculated with **`wordcountaddin`**
+
+```{r wordcount}
+source("R/functions/wordcount.R")
+
+main_rmd_words <- count_words("main.Rmd") %>%
+  str_extract("[0-9]+") %>% 
+  as.numeric()
+
+# "Word count calculated with **`wordcountaddin`**" isn't really part of the report, plus I was very tight on words
+main_rmd_words <- main_rmd_words - 5 
+
+read_me_words <- count_words("README.md") %>%
+  str_extract("[0-9]+") %>% 
+  as.numeric()
+
+```
+
+This document: `r main_rmd_words`\
+README: `r read_me_words`\
+**Total: `r main_rmd_words + read_me_words`**
+
+
+# References {-#References}
+
