@@ -1,6 +1,6 @@
 ---
 title: "Preliminary Drosophila Larvae Crawling Assay On W- Genotype Control Groups In Response To Acute Temperature Shifts"
-author: "Y3879039"
+author: "Toby Shaw-McGrath"
 output:
   bookdown::html_document2: default
   bookdown::word_document2: default
